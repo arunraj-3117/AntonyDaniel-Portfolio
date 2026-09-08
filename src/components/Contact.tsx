@@ -129,12 +129,10 @@ export function Contact() {
 
         <motion.div {...fadeInUp} className="mb-12 lg:mb-16 max-w-2xl">
           <h3 className="text-xl md:text-2xl lg:text-3xl text-white font-light leading-tight mb-4">
-            OPEN TO BUSINESS ANALYST<br />
-            ROLES AND CONSULTING<br />
-            COLLABORATIONS
+            Have a process worth fixing?
           </h3>
           <p className="text-sm text-gray-500 tracking-widest uppercase">
-            Requirements · Process Optimization · Analytics
+            I'm open to business analyst, data analyst, and process/automation roles — happy to walk through any of the projects above in more detail.
           </p>
         </motion.div>
 
