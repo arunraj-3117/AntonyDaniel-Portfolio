@@ -3,6 +3,7 @@ import { GrainOverlay } from '@/components/GrainOverlay'
 import { Hero } from '@/components/Hero'
 import { About } from '@/components/About'
 import { Skills } from '@/components/Skills'
+import { InnovationLab } from '@/components/InnovationLab'
 import { Work } from '@/components/Work'
 import { Projects } from '@/components/Projects'
 import { Education } from '@/components/Education'
@@ -17,6 +18,7 @@ export default function Index() {
         <Hero />
         <About />
         <Skills />
+        <InnovationLab />
         <Work />
         <Projects />
         <Education />
