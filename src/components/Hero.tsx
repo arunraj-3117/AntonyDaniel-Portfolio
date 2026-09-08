@@ -2,12 +2,6 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import heroImage from '@/assets/hero-arun.png'
 
-const stats = [
-  { value: '1+', label: 'Years in Business Analysis' },
-  { value: '75%', label: 'Operational Loss Reduction' },
-  { value: '15%', label: 'Efficiency Improvement' },
-]
-
 const roles = ['Business Analyst', 'Process Optimization', 'Data Analytics']
 
 function useTypewriter(words: string[]) {
@@ -91,27 +85,30 @@ export function Hero() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="mt-5 text-sm sm:text-base text-white/70 max-w-xl leading-relaxed"
             >
-              Turning complex business problems into practical, data-driven solutions
-              that improve efficiency and performance.
+              A business analyst who traces inefficiency to its root, then rebuilds the workflow around it.
             </motion.p>
 
             {/* Stat strip */}
+            {/* Actions */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
-              className="mt-10 md:mt-14 grid grid-cols-3 gap-4 sm:gap-8 max-w-xl border-t border-white/20 pt-6"
+              className="mt-10 md:mt-14 flex flex-wrap gap-3 max-w-xl border-t border-white/20 pt-8"
             >
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-display text-2xl sm:text-3xl md:text-4xl text-white leading-none">
-                    {stat.value}
-                  </p>
-                  <p className="mt-2 text-[10px] sm:text-xs text-white/50 tracking-widest uppercase leading-snug">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
+              <a
+                href="/resume.pdf"
+                download
+                className="px-6 py-3 text-xs sm:text-sm tracking-widest uppercase bg-white text-black hover:bg-gray-200 transition-colors"
+              >
+                Download Resume
+              </a>
+              <a
+                href="#contact"
+                className="px-6 py-3 text-xs sm:text-sm tracking-widest uppercase border border-white/40 text-white hover:bg-white/10 transition-colors"
+              >
+                Contact
+              </a>
             </motion.div>
           </motion.div>
         </div>
