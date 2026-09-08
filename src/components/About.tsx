@@ -7,19 +7,41 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: 'easeOut' }
 }
 
+const impactLedger = [
+  {
+    figure: '75%',
+    desc: 'Reduction in operational losses at Fixo Care',
+    sub: 'Root cause analysis, process optimization and continuous improvement',
+  },
+  {
+    figure: '60%',
+    desc: 'Drop in manual effort on lead-management workflows',
+    sub: 'Automated with Power Automate and Python',
+  },
+  {
+    figure: '35%',
+    desc: 'Faster report preparation on the CRM optimization project',
+    sub: 'BRD-driven KPI reporting and improved lead traceability',
+  },
+  {
+    figure: '15%',
+    desc: 'Gain in operational efficiency from redesigned To-Be workflows',
+    sub: 'Cross-department workflow mapping and RCA',
+  },
+  {
+    figure: '12%',
+    desc: 'Revenue erosion identified across underperforming segments',
+    sub: 'Profitability modeling to guide pricing and resourcing',
+  },
+]
+
 const focusAreas = [
-  {
-    title: 'Requirements & Documentation',
-    body: 'Requirements elicitation with stakeholders, translated into clear BRD, FRD, user stories, use cases and traceability matrices that development teams can act on.',
-  },
-  {
-    title: 'Process Optimization',
-    body: 'As-Is and To-Be process mapping, gap analysis and Root Cause Analysis to remove bottlenecks and redesign workflows for measurable efficiency gains.',
-  },
-  {
-    title: 'Data-Driven Decisions',
-    body: 'KPI monitoring, SQL analysis and Power BI dashboards that turn operational data into decisions on pricing, sales focus and resource allocation.',
-  },
+  { title: 'Business Analyst', body: 'BRD/FRD, requirements, RCA' },
+  { title: 'Data Analyst', body: 'SQL, Power BI, BigQuery' },
+  { title: 'Process Analyst', body: 'BPMN, workflow redesign' },
+  { title: 'CRM / Sales Ops Analyst', body: 'Lead management, CRM workflows' },
+  { title: 'Automation Analyst', body: 'Python, Power Automate' },
+  { title: 'Product Analyst', body: 'User stories, UAT, Agile' },
 ]
 
 export function About() {
@@ -46,13 +68,16 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 mb-24 lg:mb-32">
           <motion.div {...fadeInUp} className="relative pl-6 border-l border-gray-800">
             <p className="text-base lg:text-lg text-gray-300 leading-relaxed">
-              I'm <span className="text-white">Antony Daniel</span>, a Business Analyst with 1+ year
-              of experience turning requirements into clear BRD/FRD docs, and processes into
-              measurable efficiency gains.
+              I'm a business analyst with 1+ year of experience in requirements gathering,
+              process improvement, and data-driven decision-making. My background is in AI
+              &amp; Data Science, which gives me a practical edge most BAs don't have: I can
+              read the data behind a process, not just the process itself.
             </p>
             <p className="mt-4 text-base lg:text-lg text-gray-400 leading-relaxed">
-              A B.Tech graduate in AI & Data Science, I blend business analysis with data
-              analytics — RCA, CRM operations and KPI monitoring included.
+              I enjoy taking a workflow apart to see where it actually breaks, then putting
+              it back together — in a BRD, a dashboard, or a script — so the fix sticks.
+              Outside assigned work, I keep researching, mentoring, and reverse-engineering
+              systems just to understand how they hold together.
             </p>
           </motion.div>
 
@@ -61,40 +86,40 @@ export function About() {
             transition={{ ...fadeInUp.transition, delay: 0.2 }}
             className="space-y-0"
           >
-            {focusAreas.map((area, i) => (
+            <p className="text-sm text-gray-500 tracking-widest uppercase mb-6">Roles I fit well</p>
+            {focusAreas.map((area) => (
               <div
                 key={area.title}
-                className="border-t border-gray-800 py-6 group transition-all duration-300 hover:pl-3 hover:border-gray-500"
+                className="flex items-center justify-between gap-4 border-t border-gray-800 py-4 group transition-colors hover:border-gray-500"
               >
-                <div className="flex items-start gap-4">
-                  <span className="mt-1 text-xs text-gray-600 group-hover:text-white transition-colors shrink-0 font-mono">
-                    0{i + 1}
-                  </span>
-                  <div>
-                    <h3 className="text-lg lg:text-xl text-white font-light mb-2 group-hover:translate-x-1 transition-transform">
-                      {area.title}
-                    </h3>
-                    <p className="text-sm lg:text-base text-gray-500 leading-relaxed">{area.body}</p>
-                  </div>
-                </div>
+                <span className="text-sm lg:text-base text-white group-hover:text-white">{area.title}</span>
+                <span className="text-sm text-gray-500 text-right whitespace-nowrap">{area.body}</span>
               </div>
             ))}
             <div className="border-t border-gray-800" />
           </motion.div>
         </div>
 
-        {/* Impact quote */}
+        
+        {/* Impact ledger */}
         <motion.div {...fadeInUp}>
-          <h2 className="font-display text-[4vw] lg:text-6xl xl:text-8xl leading-tight tracking-tight text-gray-300">
-            "REDUCED OPERATIONAL<br />
-            LOSSES BY 75% <br />
-            THROUGH RCA AND<br />
-            PROCESS OPTIMIZATION."
-          </h2>
-          <p className="mt-6 text-sm text-gray-500 tracking-widest uppercase">
-            FIXO CARE — BUSINESS DEVELOPMENT<br />
-            SALEM / INDIA
+          <p className="text-sm text-gray-500 tracking-widest uppercase mb-6">
+            Impact, in the numbers behind the projects below
           </p>
+          <div className="border-t border-gray-800">
+            {impactLedger.map((item) => (
+              <div
+                key={item.figure}
+                className="grid grid-cols-1 sm:grid-cols-[120px_1fr] gap-2 sm:gap-6 items-baseline py-6 border-b border-gray-800"
+              >
+                <span className="font-display text-3xl lg:text-4xl text-amber-500">{item.figure}</span>
+                <div>
+                  <p className="text-sm lg:text-base text-gray-200">{item.desc}</p>
+                  <p className="mt-1 text-xs lg:text-sm text-gray-500">{item.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
