@@ -2,10 +2,11 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useInView, animate } from 'framer-motion'
 import { GraduationCap } from 'lucide-react'
 
-const coursework = [
-  'Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision', 'Neural Networks', 'IoT',
-  'Statistical Learning', 'Exploratory Data Analysis', 'Data Mining', 'DBMS', 'Agentic AI',
-  'Generative AI',
+const beyondWork = [
+  'Learning new things and updating myself',
+  'Mentoring junior students',
+  'Reading about various technology',
+  'Reverse-engineering systems and concepts',
 ]
 
 const fadeInUp = {
@@ -37,7 +38,7 @@ function CircularCGPA({ value, max = 10 }: { value: number; max?: number }) {
   }, [isInView, value, max, circumference])
 
   return (
-    <div ref={ref} className="relative w-32 h-32 md:w-36 md:h-36 mx-auto lg:mx-0 shrink-0">
+    <div ref={ref} className="relative w-32 h-32 md:w-36 md:h-36 mx-auto sm:mx-0 shrink-0">
       <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
         <circle cx="50" cy="50" r={radius} fill="none" stroke="currentColor" strokeWidth="4" className="text-gray-800" />
         <circle
@@ -82,34 +83,30 @@ export function Education() {
             <GraduationCap size={120} strokeWidth={0.6} />
           </motion.div>
 
-          <div className="relative flex flex-col lg:flex-row gap-8 lg:gap-16 lg:items-center text-center lg:text-left">
-            <CircularCGPA value={7.98} />
-
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-gray-500 tracking-widest uppercase mb-3">Sep 2021 — May 2025</p>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2">
-                B.Tech — Artificial Intelligence & Data Science
-              </h3>
-              <p className="text-base lg:text-lg text-gray-400">Knowledge Institute of Technology</p>
-              <p className="text-sm text-gray-600 mt-1">Salem, Tamil Nadu</p>
+          <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+            {/* Education details */}
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 sm:items-center text-center sm:text-left">
+              <CircularCGPA value={7.98} />
+              <div className="min-w-0">
+                <p className="text-sm text-gray-500 tracking-widest uppercase mb-3">Sep 2021 — May 2025</p>
+                <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2">
+                  B.Tech — Artificial Intelligence & Data Science
+                </h3>
+                <p className="text-base lg:text-lg text-gray-400">Knowledge Institute of Technology</p>
+                <p className="text-sm text-gray-600 mt-1">Salem, Tamil Nadu</p>
+              </div>
             </div>
-          </div>
 
-          <div className="relative mt-10 pt-8 border-t border-gray-800">
-            <p className="text-sm text-gray-500 tracking-widest uppercase mb-4">Relevant Coursework</p>
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {coursework.map((course, i) => (
-                <motion.span
-                  key={course}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-50px' }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                  className="px-3 py-1.5 text-xs text-gray-500 border border-gray-800 rounded-full hover:border-gray-500 hover:text-white hover:bg-white/5 transition-colors"
-                >
-                  {course}
-                </motion.span>
-              ))}
+            {/* Beyond work */}
+            <div className="lg:border-l lg:border-gray-800 lg:pl-16 pt-10 lg:pt-0 border-t lg:border-t-0 border-gray-800">
+              <p className="text-sm text-gray-500 tracking-widest uppercase mb-4">Beyond Work</p>
+              <ul className="space-y-3">
+                {beyondWork.map((item) => (
+                  <li key={item} className="text-sm lg:text-base text-gray-400 leading-relaxed">
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </motion.div>
