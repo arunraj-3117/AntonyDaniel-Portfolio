@@ -3,31 +3,24 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 const experiences = [
   {
-    title: 'Business Analyst',
-    company: 'Fixo Care — Business Development',
-    location: 'Salem, India',
-    period: 'Sep 2025 — Present',
+    period: 'Sept 2025 — Present',
+    title: 'Business Analyst, Business Development Department',
+    company: 'Fixo Care, Salem',
     points: [
-      'Led requirements elicitation and cross-functional collaboration for healthcare CRM workflows.',
-      'Prepared BRD and FRD documentation to support business and system requirements.',
-      'Reduced operational losses by 75% through Root Cause Analysis, process optimization and continuous improvement.',
-      'Identified workflow bottlenecks via process mapping and RCA, redesigning To-Be workflows and improving operational efficiency by 15%.',
-      'Improved lead management and sales performance through data-driven analysis, KPI monitoring and workflow optimization.',
+      'Reduced operational losses by 75% through RCA, process optimization, and continuous improvement.',
+      'Identified cross-department bottlenecks and redesigned To-Be workflows, improving efficiency by 15%.',
+      'Improved lead management and sales performance through data-driven analysis and KPI monitoring.',
     ],
-    skills: ['Requirements Elicitation', 'BRD / FRD', 'RCA', 'Process Mapping', 'CRM Operations', 'KPI Monitoring'],
   },
   {
+    period: 'June 2025 — Aug 2025',
     title: 'Business Analyst Intern — Compliance',
-    company: 'SAT Connections',
-    location: 'Salem, India',
-    period: 'Jun 2025 — Aug 2025',
+    company: 'SAT Connections, Salem',
     points: [
-      'Applied business analysis techniques including requirements gathering, RCA, process mapping and gap analysis.',
-      'Prepared process flows, requirement specifications and workflow diagrams.',
-      'Collaborated with cross-functional teams to understand requirements and support process optimization.',
-      'Gained hands-on experience in stakeholder communication, workflow analysis and Agile methodologies.',
+      'Prepared and maintained process flows, requirement specifications, and workflow diagrams.',
+      'Collaborated cross-functionally to analyze workflows and support process optimization.',
+      'Built hands-on experience in stakeholder communication and Agile methodologies.',
     ],
-    skills: ['Gap Analysis', 'Workflow Diagrams', 'Stakeholder Communication', 'Agile'],
   },
 ]
 
@@ -58,12 +51,11 @@ function ExperienceCard({ exp, index }: { exp: (typeof experiences)[number]; ind
           <div>
             <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-1">{exp.title}</h3>
             <p className="text-base lg:text-lg text-gray-400">{exp.company}</p>
-            <p className="text-sm text-gray-600 mt-1">{exp.location}</p>
           </div>
           <span className="text-sm text-gray-500 tracking-widest uppercase whitespace-nowrap">{exp.period}</span>
         </div>
 
-        <ul className="space-y-3 mb-6">
+        <ul className="space-y-3">
           {exp.points.map((point, i) => (
             <motion.li
               key={point}
@@ -78,17 +70,6 @@ function ExperienceCard({ exp, index }: { exp: (typeof experiences)[number]; ind
             </motion.li>
           ))}
         </ul>
-
-        <div className="flex flex-wrap gap-2">
-          {exp.skills.map((skill) => (
-            <span
-              key={skill}
-              className="px-3 py-1 text-xs text-gray-500 border border-gray-800 rounded-full group-hover:border-gray-600 group-hover:text-gray-300 transition-colors"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
       </div>
     </motion.article>
   )
