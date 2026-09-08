@@ -1,45 +1,30 @@
-import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence, useInView, animate } from 'framer-motion'
+import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 const projects = [
   {
-    index: '01',
     title: 'CRM Sales Conversion Optimization',
-    duration: '3 Months',
-    tools: ['Cratio CRM', 'Excel', 'SQL', 'Power BI', 'Miro'],
-    summary:
-      'Analyzed CRM workflows, lead assignment, follow-ups and stage progression. Gathered requirements and designed As-Is / To-Be processes for CRM improvements.',
-    outcome:
-      'Developed BRD requirements, supported UAT and implemented KPI reporting — reducing report preparation time by 35% and improving lead traceability.',
-    metricValue: 35,
-    metricSuffix: '%',
-    metricLabel: 'Less report prep time',
+    tools: 'Cratio CRM · Excel · SQL · Power BI · Miro',
+    duration: '3 months',
+    challenge: 'Lead assignment, follow-ups, and stage progression in the CRM were inconsistent and hard to track.',
+    approach: 'Mapped As-Is and To-Be processes, wrote the BRD, and supported UAT for the redesigned workflow.',
+    result: 'Report preparation time cut by 35%, with clearer lead traceability across the pipeline.',
   },
   {
-    index: '02',
     title: 'Revenue & Profitability Optimization',
-    duration: '2 Months',
-    tools: ['Excel', 'SQL', 'Power BI', 'Power Query'],
-    summary:
-      'Analyzed revenue, cost, conversion and profitability data and identified 12% erosion across underperforming service segments.',
-    outcome:
-      'Built profitability models and Power BI dashboards supporting pricing, sales focus and resource-allocation decisions.',
-    metricValue: 12,
-    metricSuffix: '%',
-    metricLabel: 'Margin erosion identified',
+    tools: 'Excel · SQL · Power BI · Power Query',
+    duration: '2 months',
+    challenge: 'Underperforming service segments were quietly eroding overall profitability.',
+    approach: 'Analyzed revenue, cost, and conversion data, then built profitability models and Power BI dashboards.',
+    result: 'Identified 12% erosion and gave leadership a data basis for pricing and resource-allocation decisions.',
   },
   {
-    index: '03',
     title: 'Business Process Automation — Lead Management',
-    duration: '3 Months',
-    tools: ['Google Sheets', 'Power BI', 'CRM', 'Python'],
-    summary:
-      'Analyzed lead-management workflows and identified repetitive activities consuming 10–15 hours per week of manual effort.',
-    outcome:
-      'Designed To-Be workflows and implemented automations with Power Automate and Python, cutting manual intervention by 60% and reporting effort by 8 hours per week.',
-    metricValue: 60,
-    metricSuffix: '%',
-    metricLabel: 'Less manual work',
+    tools: 'Google Sheets · Power BI · CRM · Python',
+    duration: '3 months',
+    challenge: 'Repetitive lead-management tasks were consuming 10–15 hours a week of manual effort.',
+    approach: 'Redesigned the To-Be workflow and automated key steps with Power Automate and Python.',
+    result: 'Manual intervention down 60%, plus 8 hours a week saved on reporting.',
   },
 ]
 
@@ -50,31 +35,7 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: 'easeOut' }
 }
 
-function Counter({ value, suffix = '' }: { value: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [display, setDisplay] = useState(0)
-
-  useEffect(() => {
-    if (!isInView) return
-    const controls = animate(0, value, {
-      duration: 1.4,
-      ease: 'easeOut',
-      onUpdate: (v) => setDisplay(Math.round(v)),
-    })
-    return () => controls.stop()
-  }, [isInView, value])
-
-  return (
-    <span ref={ref}>
-      {display}
-      {suffix}
-    </span>
-  )
-}
-
-function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  const [open, setOpen] = useState(false)
+function ProjectRow({ project, index }: { project: (typeof projects)[number]; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -97,71 +58,34 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
       <div
         ref={cardRef}
         onMouseMove={handleMouseMove}
-        onClick={() => setOpen((o) => !o)}
-        className="relative overflow-hidden cursor-pointer py-8 md:py-10 px-4 -mx-4 transition-colors group"
+        className="relative overflow-hidden py-10 md:py-12 px-4 -mx-4"
         style={{
           backgroundImage:
-            'radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.05), transparent 70%)',
+            'radial-gradient(500px circle at var(--x, 50%) var(--y, 50%), rgba(255,255,255,0.04), transparent 70%)',
         }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-          <div className="lg:col-span-1">
-            <span className="font-display text-2xl text-gray-700 group-hover:text-white transition-colors">
-              {project.index}
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-16">
+          <div>
+            <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2">{project.title}</h3>
+            <p className="text-xs md:text-sm text-gray-500 mb-1">{project.tools}</p>
+            <p className="text-xs md:text-sm text-gray-600">{project.duration}</p>
           </div>
 
-          <div className="lg:col-span-6">
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 flex items-center gap-3">
-              {project.title}
-              <motion.span
-                animate={{ rotate: open ? 45 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-gray-500 text-2xl leading-none"
-              >
-                +
-              </motion.span>
-            </h3>
-            <p className="text-sm text-gray-600 mb-4 tracking-widest uppercase">{project.duration}</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tools.map((tool) => (
-                <span key={tool} className="px-3 py-1 text-xs text-gray-500 border border-gray-800 rounded-full">
-                  {tool}
-                </span>
-              ))}
+          <div className="grid gap-6">
+            <div className="grid grid-cols-[90px_1fr] md:grid-cols-[110px_1fr] gap-4">
+              <span className="text-sm text-gray-400 font-medium">Challenge</span>
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed">{project.challenge}</p>
+            </div>
+            <div className="grid grid-cols-[90px_1fr] md:grid-cols-[110px_1fr] gap-4">
+              <span className="text-sm text-gray-400 font-medium">Approach</span>
+              <p className="text-sm md:text-base text-gray-400 leading-relaxed">{project.approach}</p>
+            </div>
+            <div className="grid grid-cols-[90px_1fr] md:grid-cols-[110px_1fr] gap-4">
+              <span className="text-sm text-white font-medium">Result</span>
+              <p className="text-sm md:text-base text-gray-300 leading-relaxed">{project.result}</p>
             </div>
           </div>
-
-          <div className="lg:col-span-3 lg:text-right">
-            <p className="font-display text-4xl lg:text-5xl text-white leading-none">
-              <Counter value={project.metricValue} suffix={project.metricSuffix} />
-            </p>
-            <p className="mt-2 text-xs text-gray-500 tracking-widest uppercase">{project.metricLabel}</p>
-          </div>
-
-          <div className="lg:col-span-2 flex lg:justify-end">
-            <span className="text-xs text-gray-600 tracking-widest uppercase group-hover:text-gray-300 transition-colors">
-              {open ? 'Close' : 'View'}
-            </span>
-          </div>
         </div>
-
-        <AnimatePresence initial={false}>
-          {open && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-              className="overflow-hidden"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 pt-6 mt-6 border-t border-gray-800/60">
-                <p className="text-sm lg:text-base text-gray-400 leading-relaxed">{project.summary}</p>
-                <p className="text-sm lg:text-base text-gray-500 leading-relaxed">{project.outcome}</p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </motion.article>
   )
@@ -178,21 +102,22 @@ export function Projects() {
 
         <motion.h2
           {...fadeInUp}
-          className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-16 lg:mb-24"
+          className="font-display text-[10vw] lg:text-section leading-none tracking-tight mb-6"
         >
-          PROJECTS
+          FEATURED PROJECTS
         </motion.h2>
+
+        <motion.p {...fadeInUp} className="text-sm md:text-base text-gray-500 max-w-2xl mb-16 lg:mb-24">
+          Three projects, each following the same arc: a workflow that wasn't working, a redesign
+          grounded in data, and a measurable result.
+        </motion.p>
 
         <div>
           {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
+            <ProjectRow key={project.title} project={project} index={i} />
           ))}
           <div className="border-t border-gray-800" />
         </div>
-
-        <p className="mt-8 text-xs text-gray-600 tracking-wide uppercase">
-          Click a project to expand details
-        </p>
       </div>
     </section>
   )
