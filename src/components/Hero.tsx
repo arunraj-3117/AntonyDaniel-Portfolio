@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import heroImage from '@/assets/hero-arun.png'
+import heroImage from '@/assets/ADheroimage.png'
 
 const roles = ['Business Analyst', 'Process Optimization', 'Data Analytics']
 
