@@ -44,15 +44,12 @@ export function Hero() {
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-y-0 right-0 w-full md:w-[75%] lg:w-[65%] xl:max-w-[1100px]">
-          <img
-            src={heroImage} 
-            alt="Arun Raj"
-            className="w-full h-full object-cover object-[center_15%] sm:object-[center_20%] md:object-[center_25%] grayscale"
-          />
-        </div>
-        <div className="absolute inset-0 bg-black/50 md:bg-gradient-to-r md:from-black/85 md:via-black/50 md:to-transparent" />
+     <div className="absolute inset-0 w-full h-full bg-black">
+        <img
+          src={heroImage}
+          alt="Arun Raj"
+          className="w-full h-full object-cover object-[70%_center] md:object-[65%_center]"
+        />
       </div>
 
       {/* Content */}
